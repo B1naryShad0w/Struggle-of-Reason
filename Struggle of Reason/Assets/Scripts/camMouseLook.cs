@@ -6,7 +6,7 @@ public class camMouseLook : MonoBehaviour {
 
     Vector2 mouseLook;
     Vector2 smoothV;
-    public float sensitivity = 0.75f;
+    public float sensitivity = 0.50f;
     public float smoothing = 5.0f;
 
     GameObject character;

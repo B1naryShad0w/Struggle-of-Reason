@@ -1,12 +1,15 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour {
+    public Slider happinessSlider;
+    public Slider energySlider;
 
-    public float energy = 100f;
-    public float happiness = 100f;
-
+    public int happiness = 100;
+    public int energy = 100;
+    
     public int visitRatio = 50;
 
 	// Use this for initialization
@@ -16,8 +19,8 @@ public class gameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Random.Range(0, 100) < visitRatio) { goodSpawn(); }
-        else { badSpawn(); }
+        energySlider.value = energy;
+        happinessSlider.value = happiness;
     }
 
     void missedVisit()
