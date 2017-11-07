@@ -11,14 +11,37 @@ public class gameManager : MonoBehaviour {
     public int energy = 100;
     
     public int visitRatio = 50;
+    public float energyReductionRate = 1f;
 
-	// Use this for initialization
+    [HideInInspector]
+    public bool curMoveState = false;
+    private bool prevMoveState = false;
+    private float passedTime;
+    
 	void Start () {
 		
 	}
 	
-	// Update is called once per frame
 	void Update () {
+        if (curMoveState == true)
+        {
+            prevMoveState = true;
+            passedTime += Time.deltaTime * energyReductionRate;
+
+            if (passedTime >= 1)
+            {
+                energy -= (int)(Mathf.Floor(passedTime));
+                passedTime -= Mathf.Floor(passedTime);
+            }
+        }
+
+        if (curMoveState == false && prevMoveState == true)
+        {
+            energy -= Mathf.RoundToInt(passedTime);
+            prevMoveState = false;
+        }
+
+
         energySlider.value = energy;
         happinessSlider.value = happiness;
     }
